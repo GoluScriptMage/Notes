@@ -31,7 +31,7 @@
 // -> So we use this keyword to point to the current boss or Object but sometime in the process of calling it loses it's identity and give use undefined
 // To solve that undefined we use "bind" method
 // => What it does is simple it sticks the identity of the owner with the fn u are calling like giving a child its idCard so he can find his parents
-
+/*
 const idCard = {
   fatherName: "ABC",
   childName: "XYZ",
@@ -49,3 +49,36 @@ console.log('Logging the child Details...');
 // const childDetails = idCard.getDetails;
 const childDetails = idCard.getDetails.bind(idCard);
 childDetails();
+*/
+
+// This is the example of the "arrowFn"
+// => Arrow fn don't have this keyword so it alawys have the same parents don't dwindle with it
+// => Need to use arrow fn when needs callback that is then owner gets separate
+
+class Account {
+  constructor(accountNo) {
+    this.accountNO = accountNo;
+    this.balance = 0;
+    this.accHolderName = "Golu";
+    this.sendMoney(this.accountNO, 3000);
+  }
+
+  sendMoney(accountNo, amount) {
+    if (this.accountNO == accountNo) {
+      this.balance += amount;
+      console.log(
+        `The new balance is ${this.balance} of owner ${this.accHolderName}`
+      );
+      return console.log("Transaction successful...");
+    }
+    console.log("Transaction failed...");
+  }
+}
+
+const bankAcc = new Account(3232);
+// bankAcc.sendMoney(3232, 3000);  // It will work fine
+
+const callBank = bankAcc.sendMoney;
+// setTimeout(() => callBank(3232, 400), 100); // Will get undefined the owner got lost from the callback use bind or arrow fn
+// / -------- FIX ------- //
+setTimeout(() => bankAcc.sendMoney(3232, 10000), 300);
