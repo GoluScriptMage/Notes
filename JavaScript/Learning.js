@@ -55,6 +55,8 @@ childDetails();
 // => Arrow fn don't have this keyword so it alawys have the same parents don't dwindle with it
 // => Need to use arrow fn when needs callback that is then owner gets separate
 
+/*
+
 class Account {
   constructor(accountNo) {
     this.accountNO = accountNo;
@@ -82,3 +84,92 @@ const callBank = bankAcc.sendMoney;
 // setTimeout(() => callBank(3232, 400), 100); // Will get undefined the owner got lost from the callback use bind or arrow fn
 // / -------- FIX ------- //
 setTimeout(() => bankAcc.sendMoney(3232, 10000), 300);
+*/
+
+// => This is the example of "Promises" and "Promises.alll"
+// -> Promises are like future value that can be resolved (success) or rejected (failed)
+// -/- So, promises are like i am promising u i will get world richest it can be happened or not -/-
+
+/* Problem  
+It starts by calling getUser(1) to get the user's profile.
+
+After the user has been successfully fetched, it should then fetch the orderHistory, cart, and recommendations all at the same time (in parallel).
+
+If all three parallel operations are successful, it should log a final dashboard object to the console, like this:
+
+--- DASHBOARD READY ---
+User: Golu
+Orders: 3
+Cart Items: 2
+Recommendations: [...]
+The Twist: Since getRecommendations is designed to fail, your code must gracefully handle this error. It should catch the error from the parallel operations and log a user-friendly message like: "Could not load all dashboard widgets. Please try again later." without crashing the entire application.
+*/
+
+// 1. Fetches the user's profile.
+function getUser(id) {
+  console.log("API: Getting user...");
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ id: id, name: "Golu", email: "golu@example.com" });
+    }, 1000); // Takes 1 second
+  });
+}
+
+// 2. Fetches the user's order history.
+function getOrderHistory(user) {
+  console.log(`API: Getting orders for ${user.name}...`);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(["Order #1", "Order #2", "Order #3"]);
+    }, 1500); // Takes 1.5 seconds
+  });
+}
+
+// 3. Fetches the user's shopping cart.
+function getCart(user) {
+  console.log(`API: Getting cart for ${user.name}...`);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(["Laptop Charger", "Mechanical Keyboard"]);
+    }, 500); // Takes 0.5 seconds
+  });
+}
+
+// 4. Fetches product recommendations. (This one is unreliable!)
+function getRecommendations(user) {
+  console.log(`API: Getting recommendations for ${user.name}...`);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Oh no, the recommendation engine crashed!
+      reject("Error: Recommendation service is down.");
+    }, 1000); // Fails after 1 second
+  });
+}
+
+// Promise.all always take an array and return an array
+// catch will run for rejects and also for bugs in .then like reference error
+// there is something called variable shadowing so be sure to use different names 
+// and catch is mostly used then a promise rejected and also then there is a bug in there.
+
+let finalUser;
+
+getUser(1)
+  .then((user) => {
+    console.log("Getting started");
+    finalUser = user;
+    return Promise.all([
+      getOrderHistory(user),
+      getCart(user),
+      getRecommendations(user)
+    ]);
+  }).then(( results) => {
+    const orders = results[0];
+    const cart = results[1];
+
+    console.log('---User dashboard');
+    console.log(`User: ${finalUser.name}`);
+    console.log('Orders:', orders.length);
+    console.log('Cart items:', cart.length);    
+  }).catch((err) => {
+    console.log('Something went wrong!')
+  })
