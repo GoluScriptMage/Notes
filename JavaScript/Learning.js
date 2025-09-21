@@ -103,7 +103,6 @@ Orders: 3
 Cart Items: 2
 Recommendations: [...]
 The Twist: Since getRecommendations is designed to fail, your code must gracefully handle this error. It should catch the error from the parallel operations and log a user-friendly message like: "Could not load all dashboard widgets. Please try again later." without crashing the entire application.
-*/
 
 // 1. Fetches the user's profile.
 function getUser(id) {
@@ -173,3 +172,36 @@ getUser(1)
   }).catch((err) => {
     console.log('Something went wrong!')
   })
+*/
+
+// This is example of Async Loop Trap and how can be safe from it
+// -> So, In the async fn then u are using await inside the loop it waits for all calls to finish one by one
+// - / - It is like in a race waiting for each runner to complete the run one by one not all at once
+// => So, to tackle up this problem we use ".map" & "Promise.all" combo like this
+
+const running = (runner) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Line-183 Completed run:", runner);
+      resolve(runner);
+    }, 3000);
+  });
+};
+
+const olympicsRace = async (runners) => {
+  const completedRunners = [];
+
+  // It waits for each runner to complets run only then send the second runner
+  // for (const runner of runners) {
+  //   const raceRunner = await running(runner);
+  //   completedRunners.push(raceRunner);
+  // }
+
+  // It creats a array of callbacks and then run them all at once
+  const runnersPromise = runners.map((runner) => running(runner));
+  const finalList = await Promise.all(runnersPromise);
+  console.log(" Yo, Race completed the winner is me");
+};
+
+const runners = [1, 2, 3];
+olympicsRace(runners);
