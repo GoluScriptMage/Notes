@@ -178,7 +178,7 @@ getUser(1)
 // -> So, In the async fn then u are using await inside the loop it waits for all calls to finish one by one
 // - / - It is like in a race waiting for each runner to complete the run one by one not all at once
 // => So, to tackle up this problem we use ".map" & "Promise.all" combo like this
-
+/*
 const running = (runner) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -205,3 +205,45 @@ const olympicsRace = async (runners) => {
 
 const runners = [1, 2, 3];
 olympicsRace(runners);
+*/
+
+// This is example of the Event Loop Blocking and solving it with help of Worker
+const express = require("express");
+const { Worker } = require("worker_threads");
+const app = express();
+const PORT = 3000;
+
+// To solve the blocking beahviour we will use worker thread 
+// -> Worker threads we will do the heavy loading works while not blocking the main code
+// * // The main thing we create the worker file and then call it in main file
+// It is like a chef now can make up the other orders too while the soup is being created by the assistant chef
+
+// A non-blocking route
+app.get("/fast", (req, res) => {
+  console.log("I have completed my task.");
+  res.send("I am fast!");
+});
+
+// This fn will now use the worker to run the heavy blocking task and not block the main code
+app.get("/slow", (req, res) => {
+  // creating new worker
+  const worker = new Worker("./JavaScript/worker.js");
+  // listening for the message from the worker
+  worker.on("message", (result) => {
+    console.log("Task finished: ", result);
+  });
+  // It is like sending signal to worker
+  worker.postMessage("start");
+  res.send("I am slow but non-blocking now!");
+});
+
+// A simple async task to show it's also blocked
+setTimeout(() => {
+  console.log(
+    "This timer was supposed to fire after 2 seconds, but it was blocked!"
+  );
+}, 2000);
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
