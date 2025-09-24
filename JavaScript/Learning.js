@@ -207,6 +207,7 @@ const runners = [1, 2, 3];
 olympicsRace(runners);
 */
 
+/*
 // This is example of the Event Loop Blocking and solving it with help of Worker
 const express = require("express");
 const { Worker } = require("worker_threads");
@@ -247,3 +248,60 @@ setTimeout(() => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+*/
+
+// This is a problem i have to solve with Promises that have 3 promise and one is sure to reject so i have to handle it
+// -> I can't use the .all method bcz if one promise failed the whole thing will be failed
+// => So for this problem we are going to use "Promise.allSettled" method
+
+/*
+function fetchTwitterPosts(user) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(["Tweet 1", "Tweet 2"]), 1000);
+  });
+}
+
+function fetchInstagramPosts(user) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject("Instagram API is down"), 1500);
+  });
+}
+
+function fetchThreadsPosts(user) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(["Thread 1"]), 500);
+  });
+}
+
+const user = "golu";
+
+Promise.allSettled([
+  fetchTwitterPosts(user),
+  fetchInstagramPosts(user),
+  fetchTwitterPosts(user),
+]).then((results) => {
+  results.forEach(result => {
+    console.log(result);
+  });
+});
+*/
+
+// This is a problem i have added the last method to the array prototype fn 
+// Prootype used only Ancient fn no arrow ok
+Array.prototype.last = function(){
+  // console.log(arr);
+  return this[this.length - 1];
+}
+
+const object = function (name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+object.prototype = Object.create(Array.prototype);
+console.log(object.push(34));
+
+const numArray = [1, 2, 3, 4];
+console.log(numArray.last())
+
+
