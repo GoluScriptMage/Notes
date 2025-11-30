@@ -1,0 +1,9 @@
+Tasks for o-auth
+
+✔ --> Set the user model @done(25-11-25 22:41)
+✔ --> Complete googleStrategy @done(25-11-25 22:41)
+✔ --> connect oauth to routes @started(25-11-25 22:41) @done(25-11-26 12:49) @lasted(14h8m27s)
+✘ --> connect to frontend @cancelled(25-11-26 12:49)
+✘ --> set the frontend @cancelled(25-11-26 12:49)
+✘ --> Change credentials on google console @cancelled(25-11-26 12:49)
+✔ --> Test it @done(25-11-26 12:49)

@@ -1,0 +1,8 @@
+** TO complete the Frontend 
+✔ -> Addd routing and add login route & Dashboard route @started(25-11-30 17:44) @done(25-11-30 17:58) @lasted(14m14s)
+✔ -> Also use the info from backend @done(25-11-30 17:58)
+
+☐ -> Change the url in Console @started(25-11-30 17:58)
+☐ -> Add the frontend url in backend CORS
+☐ -> Connect backend with Frontend
+☐ -> Solve any errors and test it
