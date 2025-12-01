@@ -1,0 +1,47 @@
+import { useState, useEffect } from "react";
+import { io } from "socket.io-client";
+
+// ## Way 1
+// create websocket connection outside the component
+const socket = io("http://localhost:3001");
+
+const App = () => {
+  // create a useState for message
+  const [message, setMessage] = useState(" ");
+  const [status, setStatus] = useState(false);
+
+  // setup useEffect to listen for messages from server
+  useEffect(() => {
+    //listening pong event from server
+    socket.on("pong", (data) => {
+      console.log("Message from server:", data);
+      setMessage(data.message);
+    });
+
+    // cleanup on component
+    // socket.on("disconnect", () => {
+    //   console.log("Socket disconnected");
+    // })
+    return () => {
+      socket.off("pong");
+    };
+
+  }, []);
+
+  // send message to server on button click
+  const sendPing = () => {
+    socket.emit("ping", "Ping from client");
+  };
+
+  return (
+    <div>
+      <h1>Socket.io Client</h1>
+      <h3>Status: {}</h3>
+      <button onClick={sendPing}>Send Message</button>
+      <button>Disconnect websocket</button>
+      <h2> Message from server: {message}</h2>
+    </div>
+  );
+};
+
+export default App;

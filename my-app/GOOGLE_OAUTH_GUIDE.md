@@ -8,7 +8,7 @@ This guide will take you through implementing "Log in with Google" functionality
 
 ### Why OAuth 2.0 Exists
 
-Imagine you want to let users log into your app using their Google accounts. The naive approach would be to ask users for their Google username and password. But this is terrible for security! Users would have to trust your app with their Google credentials, and Google would have no way to know which app is making requests on behalf of users.
+Imagine you want to let users log into your app using their Google accounts. The naive approach would be to ask usßers for their Google username and password. But this is terrible for security! Users would have to trust your app with their Google credentials, and Google would have no way to know which app is making requests on behalf of users.
 
 OAuth 2.0 solves this by introducing a "delegation" system. Instead of sharing passwords, users give your app a special "access token" that proves Google has authorized your app to act on their behalf.
 
