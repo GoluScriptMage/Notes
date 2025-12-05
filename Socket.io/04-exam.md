@@ -42,13 +42,23 @@ USER A                    SERVER                  USER B
 Write your answer here before scrolling:
 
 ```
-1. Which method? _______________
-2. Client or Server? _______________
+1. Which method? io.to().emit();
+2. Client or Server? Server
 3. Code snippet:
 
 // Your code here
+// Client A
+socket.emit("private-msg", {message: "Hey Bob, how are you?", recieverId: ClientB.id, senderId: ClientA});
 
+// Server
+socket.on("private-message", (data) => {
+  io.to(data.userId).emit("msg-send", data);
+})
 
+//Client B
+socket.on("msg-send", (data) => {
+  console.log(`Message came from ${data.senderId} : ${data.message});
+})
 
 
 ```
@@ -129,13 +139,20 @@ All see: "Server restarting in 5 minutes"
 Write your answer here before scrolling:
 
 ```
-1. Which method? _______________
-2. Where does this code go? _______________
-3. Should users be able to trigger this? _______________
+1. Which method? io.emit()
+2. Where does this code go? Server
+3. Should users be able to trigger this?
+I don't think But yes it would send a notification to all users from server
 
 // Your code here
 
+// Server
+io.emit("server-restart", { message: "Server is going to restart in 5 mins"});
 
+//Users
+socket.on("server-restart", (msg) => {
+  console.log(msg);
+})
 
 
 ```
@@ -232,15 +249,24 @@ USER A               SERVER              USER B & C
 This is the hardest one. Think carefully!
 
 ```
-1. For sending code to User A? _______________
-2. For notifying others in room? _______________
+1. For sending code to User A? socket.emit()
+2. For notifying others in room? socket.to(RoomId).emit()
 3. Write the server code:
 
+```javascript
 // Your code here
+// User A
+socket.emit("join-room", roomId)
+
+//Server
+const currentCode = {} // Assume this has all current code
+socket.on("join-room", (roomId){
+  socket.join(roomId);
 
 
-
-
+  socket.emit("room-joined", {currentCode});
+  socket.to(roomId).emit("User joine with ID: ", socket.id)
+})
 
 
 ```
@@ -348,11 +374,22 @@ You're building a multiplayer game. When a player shoots, you need to:
 This requires MULTIPLE methods. Map out the flow:
 
 ```
-1. Shooter sees bullet: _______________
+1. Shooter sees bullet: 
+
+
+
 2. Tell server about shot: _______________
 3. Server tells others: _______________
 4. Server tells hit player: _______________
 ```
+
+First - user emit "fire-bullet" event to server
+Second - server listen to that event and wrote down that user ID
+Third - Server then check that bullet is legit and no cheats
+Fourth - Server emits socket.to().emit() for only the lobby players not all the players
+Fifth - Server Check is the bullet hit soemeone 
+Sixth - If yes server emits a message for every other room player 
+that this User died by this user who shot the bullet
 
 ---
 

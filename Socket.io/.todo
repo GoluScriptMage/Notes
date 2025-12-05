@@ -1,3 +1,14 @@
 ✔ Add a "disconnect" button that calls socket.disconnect() @started(25-12-01 21:57) @done(25-12-01 21:57) @lasted(43s)
 ✔ Show connection status ("Connected" / "Disconnected") @done(25-12-01 21:57)
 ✔ Count how many pings you've sent @done(25-12-01 22:11)
+
+** Tasks to complete this
+☐ -> Add a join-room @started(25-12-02 11:56)
+  ✔ -> Add room-joined @done(25-12-05 09:54)
+  ☐
+  ✔ -> Add user-joined @done(25-12-05 09:54)
+✔ -> Add a code-change @done(25-12-05 09:54)
+ ✔ -> add code-update @done(25-12-05 09:54)
+☐
+☐ -> add user-left
+☐ -> add user-list
