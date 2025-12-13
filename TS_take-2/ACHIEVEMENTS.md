@@ -6,18 +6,20 @@ Track your progress and unlock badges as you master TypeScript!
 
 ## 📊 Overall Progress
 
-**Total Achievements:** 10/20 Unlocked  
-**Completion Rate:** 50%
+**Total Achievements:** 14/20 Unlocked  
+**Completion Rate:** 70%
 
 ```
-[██████████░░░░░░░░░░] 50%
+[██████████████░░░░░░] 70%
 ```
 
 ---
 
-## 🎉 Recent Unlocks (Dec 6, 2025)
+## 🎉 Recent Unlocks (Dec 6-13, 2025)
 
-**Day 1 Completed!** You've mastered discriminated unions, type narrowing, exhaustiveness checking, and state machines. You also showed incredible initiative by researching `Record<key, value>` on your own and learning from errors - that's the mark of a true developer! 💪
+**Day 1 Completed (Dec 6)!** You've mastered discriminated unions, type narrowing, exhaustiveness checking, and state machines. You also showed incredible initiative by researching `Record<key, value>` on your own and learning from errors - that's the mark of a true developer! 💪
+
+**Day 2 Almost Complete (Dec 6-13)!** You've conquered generic functions, generic classes, type transformations, and built a production-level Collection utility! You showed amazing learning integrity by asking for concept explanations and writing all code yourself. Nightmare Mode tonight! 🔥
 
 ---
 
@@ -89,31 +91,36 @@ Track your progress and unlock badges as you master TypeScript!
 
 ---
 
-### 🏭 Day 2: The Factory (5/5 remaining)
+### 🏭 Day 2: The Factory (1/5 remaining) 🔥 ALMOST DONE
 
-- [ ] **🏭 Factory Worker**
+- [x] **🏭 Factory Worker** ⭐ **UNLOCKED!**
 
   - Create your first generic function
   - _Unlocked: Basic generics_
+  - ✅ Completed: Challenge 1 (makeArray with type inference)
 
-- [ ] **📦 Magic Box Opener**
+- [x] **📦 Magic Box Opener** ⭐ **UNLOCKED!**
 
   - Use generics with 3+ different types
   - _Unlocked: Type parameter flexibility_
+  - ✅ Completed: Challenge 2 (Box class with map transformation)
 
-- [ ] **⛓️ Constraint Master**
-
-  - Implement generic constraints correctly
-  - _Unlocked: Generic type safety_
-
-- [ ] **🎨 Generic Artist**
+- [x] **🎨 Generic Artist** ⭐ **UNLOCKED!**
 
   - Build a reusable utility with generics
   - _Unlocked: Practical generic patterns_
+  - ✅ Completed: Challenge 4 (Collection with 7 methods - production level!)
 
-- [ ] **🔥 Factory Boss Defeated**
+- [x] **⚡ Multi-Type Master** ⭐ **UNLOCKED!**
+
+  - Master multiple generic type parameters
+  - _Unlocked: Advanced generic patterns_
+  - ✅ Completed: Challenge 3 (swap with `<A, B>` parameters)
+
+- [ ] **🔥 Factory Boss Defeated** 🎯 **TONIGHT!**
   - Complete ALL Day 2 challenges including bonuses
   - _Unlocked: Day 2 Certificate_
+  - 🌙 Scheduled: Nightmare Mode tonight!
 
 ---
 
