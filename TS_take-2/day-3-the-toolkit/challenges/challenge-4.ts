@@ -9,24 +9,32 @@
 // - age: number
 // - bio: string
 // - role: string
+interface User {
+  id: number;
+  username: string;
+  email: string;
+  age: number;
+  bio: string;
+  role: string;
+}
 
 // Step 2: Create LoginCredentials using Pick<T, K>
 // TODO: type LoginCredentials = Pick<...>
 // Only include: id and email
+type LoginCredentials = Pick<User, "id" | "email">;
 
 // Step 3: Create UserCard using Pick<T, K>
 // TODO: type UserCard = Pick<...>
 // Only include: username and bio
+type UserCard = Pick<User, "username" | "bio">;
 
 // Step 4: Write the functions
-function login(credentials: LoginCredentials) {
-  console.log(
-    `Logging in user ${credentials.id} with email: ${credentials.email}`
-  );
+function login(data: LoginCredentials): void {
+  console.log(`Logging in user ${data.id} with email: ${data.email}`);
 }
 
-function renderUserCard(card: UserCard) {
-  console.log(`Rendering card for: ${card.username} - ${card.bio}`);
+function renderUserCard(data: UserCard): void {
+  console.log(`Rendering card for: ${data.username} - ${data.bio}`);
 }
 
 // Step 5: Test it

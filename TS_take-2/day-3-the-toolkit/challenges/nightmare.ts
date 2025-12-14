@@ -18,68 +18,52 @@ interface ApiUser {
 }
 
 // Step 2: Create FrontendUser type
-// Requirements:
-// - Remove: _id, passwordHash, metadata
-// - Add: id (number type)
-// - Keep: everything else
-
-// TODO: Create FrontendUser type
-// Hint: Use Omit to remove fields, then use & to add id
-// type FrontendUser = Omit<ApiUser, ...> & { id: number };
+type FrontendUser = Omit<ApiUser, "_id" | "passwordHash" | "metadata"> & {
+  id: number;
+};
 
 // Step 3: Create UserPreview type
-// Requirements:
-// - Based on FrontendUser
-// - Only include: id, username, isActive
-
-// TODO: Create UserPreview type
-// type UserPreview = Pick<FrontendUser, ...>;
+type UserPreview = Pick<FrontendUser, "id" | "username" | "isActive">;
 
 // Step 4: Create AdminUserView type
-// Requirements:
-// - Based on FrontendUser
-// - Add back the metadata field from ApiUser
-
-// TODO: Create AdminUserView type
-// Hint: Use Pick to get metadata from ApiUser, combine with FrontendUser
-// type AdminUserView = FrontendUser & Pick<ApiUser, "metadata">;
+type AdminUserView = FrontendUser & Pick<ApiUser, "metadata">;
 
 // Step 5: Write transformation functions
+
 function toFrontendUser(apiUser: ApiUser): FrontendUser {
-  // TODO: Transform apiUser to FrontendUser
-  // Remove _id, passwordHash, metadata
-  // Add id field (you can use a simple hash or random number)
+  const { _id, passwordHash, metadata, ...rest } = apiUser;
 
   return {
-    // ... your implementation
-  } as FrontendUser;
+    ...rest,
+    id: parseInt(_id.slice(-6), 16),
+  };
 }
 
 function toUserPreview(frontendUser: FrontendUser): UserPreview {
-  // TODO: Extract only id, username, isActive
-
+  const { id, username, isActive } = frontendUser;
   return {
-    // ... your implementation
-  } as UserPreview;
+    id,
+    username,
+    isActive,
+  };
 }
 
 function toAdminUserView(
   apiUser: ApiUser,
   frontendUser: FrontendUser
 ): AdminUserView {
-  // TODO: Combine frontendUser with metadata from apiUser
-
+  const { metadata } = apiUser;
   return {
-    // ... your implementation
-  } as AdminUserView;
+    ...frontendUser,
+    metadata,
+  };
 }
 
-// Step 6: Test with sample data
 const apiResponse: ApiUser = {
   _id: "507f1f77bcf86cd799439011",
   username: "emma",
   email: "emma@example.com",
-  passwordHash: "$2b$10$abcdefghijklmnopqrstuvwxyz",
+  passwordHash: "$2b$10$...",
   role: "editor",
   isActive: true,
   createdAt: new Date("2024-01-15"),
@@ -90,17 +74,26 @@ const apiResponse: ApiUser = {
   },
 };
 
-console.log("=== Frontend User ===");
 const frontendUser = toFrontendUser(apiResponse);
 console.log(frontendUser);
 
-console.log("\n=== User Preview ===");
 const preview = toUserPreview(frontendUser);
 console.log(preview);
 
-console.log("\n=== Admin User View ===");
 const adminView = toAdminUserView(apiResponse, frontendUser);
 console.log(adminView);
+
+// console.log("=== Frontend User ===");
+// const frontendUser = toFrontendUser(apiResponse);
+// console.log(frontendUser);
+
+// console.log("\n=== User Preview ===");
+// const preview = toUserPreview(frontendUser);
+// console.log(preview);
+
+// console.log("\n=== Admin User View ===");
+// const adminView = toAdminUserView(apiResponse, frontendUser);
+// console.log(adminView);
 
 // Expected output:
 // === Frontend User ===

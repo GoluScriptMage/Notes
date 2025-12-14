@@ -15,28 +15,17 @@ interface PageSettings {
 // - title and url are REQUIRED
 // - theme and layout are OPTIONAL
 // - showSidebar should NOT be included at all
+type RequiredPageType = Pick<PageSettings, "title" | "url">;
+type CreatePageConfig = RequiredPageType &
+  Partial<Omit<PageSettings, "showSidebar" | "title" | "url">>;
 
 // TODO: Create PageConfig type using combination of utility types
 // Hint: You can combine Pick, Omit, and Partial
 // There are multiple solutions!
 
-// Solution 1 approach: Pick required fields + make optional fields partial
-// type PageConfig = ...
-
-// Solution 2 approach: Omit unwanted + make some optional
-// type PageConfig = ...
-
 // Step 3: Write the createPage function
-function createPage(config: PageConfig) {
-  const defaults = {
-    theme: "light" as const,
-    layout: "list" as const,
-  };
-
-  const page = { ...defaults, ...config };
-  console.log(
-    `Creating page: ${page.title} at ${page.url} with theme: ${page.theme}, layout: ${page.layout}`
-  );
+function createPage(config: CreatePageConfig): void {
+  console.log(`Creating page: ${config.title} at ${config.url} with theme: ${config.theme ?? "light"}, layout: ${config.layout ?? "list"}`);
 }
 
 // Step 4: Test with valid scenarios

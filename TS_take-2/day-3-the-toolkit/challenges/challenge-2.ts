@@ -1,6 +1,6 @@
 // 🟡 Challenge 2: The Privacy Filter (The Filter)
 // Your task: Hide sensitive information using Omit
-
+   
 // Step 1: Define the User interface (with role added)
 // TODO: Create interface User with:
 // - id: number
@@ -47,3 +47,36 @@ displayPublicProfile(publicUser);
 // Email: charlie@example.com
 // Age: 28
 // Bio: Full-stack developer
+
+////// Extra challenges
+// Create a type that makes EVERYTHING readonly, including nested objects
+
+interface User {
+  id: number;
+  name: string;
+  address: {
+    street: string;
+    city: string;
+    country: string;
+  };
+  preferences: {
+    theme: "light" | "dark";
+    notifications: {
+      email: boolean;
+      sms: boolean;
+    };
+  };
+}
+
+// Challenge: Create DeepReadonly<T> that makes ALL properties readonly
+// Including nested objects!
+
+type DeepReadonly<T> = Readonly<T>;
+
+type ReadonlyUser = DeepReadonly<User>;
+
+// Should prevent ALL mutations:
+const user: ReadonlyUser = { /* ... */ };
+// user.name = "Bob";  // ❌ Error
+// user.address.city = "NYC";  // ❌ Error (nested!)
+// user.preferences.notifications.email = true;  // ❌ Error (deeply nested!)

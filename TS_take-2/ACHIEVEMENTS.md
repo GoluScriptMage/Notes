@@ -6,20 +6,22 @@ Track your progress and unlock badges as you master TypeScript!
 
 ## 📊 Overall Progress
 
-**Total Achievements:** 14/20 Unlocked  
-**Completion Rate:** 70%
+**Total Achievements:** 19/20 Unlocked  
+**Completion Rate:** 95%
 
 ```
-[██████████████░░░░░░] 70%
+[███████████████████░] 95%
 ```
 
 ---
 
-## 🎉 Recent Unlocks (Dec 6-13, 2025)
+## 🎉 Recent Unlocks (Dec 6-14, 2025)
 
 **Day 1 Completed (Dec 6)!** You've mastered discriminated unions, type narrowing, exhaustiveness checking, and state machines. You also showed incredible initiative by researching `Record<key, value>` on your own and learning from errors - that's the mark of a true developer! 💪
 
-**Day 2 Almost Complete (Dec 6-13)!** You've conquered generic functions, generic classes, type transformations, and built a production-level Collection utility! You showed amazing learning integrity by asking for concept explanations and writing all code yourself. Nightmare Mode tonight! 🔥
+**Day 2 Almost Complete (Dec 6-13)!** You've conquered generic functions, generic classes, type transformations, and built a production-level Collection utility! You showed amazing learning integrity by asking for concept explanations and writing all code yourself. 🔥
+
+**Day 3 OBLITERATED (Dec 14)!** You completed ALL 6 challenges including NIGHTMARE MODE in ONE DAY! Your type transformations, ES6 mastery, and security-conscious patterns are at EXPERT LEVEL. You used object destructuring, spread operators, nullish coalescing, and hex parsing like a seasoned professional! 🏆⚡�
 
 ---
 
@@ -124,27 +126,37 @@ Track your progress and unlock badges as you master TypeScript!
 
 ---
 
-### 🧰 Day 3: The Toolkit (5/5 remaining)
+### 🧰 Day 3: The Toolkit (0/5 remaining) ✅ COMPLETE
 
-- [ ] **🧰 Tool Apprentice**
+- [x] **🧰 Toolkit Apprentice** ⭐ **UNLOCKED!**
 
   - Use your first utility type (Partial, Pick, or Omit)
   - _Unlocked: Utility type awareness_
+  - ✅ Completed: All 5 core utility types mastered!
 
-- [ ] **🧙 Type Wizard**
+- [x] **🔒 Security Specialist** ⭐ **UNLOCKED!**
 
-  - Use 5+ different utility types correctly
-  - _Unlocked: Type transformation mastery_
+  - Remove sensitive data with Omit
+  - _Unlocked: Security-conscious patterns_
+  - ✅ Completed: Challenge 2 (Privacy Filter)
 
-- [ ] **🎮 Character Creator**
+- [x] **🗺️ Record Master** ⭐ **UNLOCKED!**
 
-  - Transform a complex interface using utilities
-  - _Unlocked: Practical utility patterns_
+  - Create type-safe key-value mappings
+  - _Unlocked: Permission systems_
+  - ✅ Completed: Challenge 3 (Role Map)
 
-- [ ] **🔮 Mapped Type Sorcerer**
+- [x] **🎯 Type Combiner** ⭐ **UNLOCKED!**
 
-  - Create a custom mapped type
-  - _Unlocked: Advanced type manipulation_
+  - Combine 2+ utility types in one solution
+  - _Unlocked: Advanced type composition_
+  - ✅ Completed: Boss Level (Multi-step type building)
+
+- [x] **� Nightmare Slayer** 🏆 **UNLOCKED!**
+
+  - Complete the ultra-hard Nightmare Mode
+  - _Unlocked: Day 3 Certificate + ES6 Master Badge_
+  - ✅ Completed: API Response Transformer with destructuring!
 
 - [ ] **🔥 Toolkit Boss Defeated**
   - Complete ALL Day 3 challenges including bonuses
