@@ -3,7 +3,7 @@
 > "You can't build a house without a foundation. Let's set up your Socket.io server and React client the RIGHT way."
 
 ## 🎯 Learning Objectives
-
+-
 By the end of this section, you will:
 
 - ✅ Set up a Socket.io server with Express
