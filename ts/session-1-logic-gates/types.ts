@@ -6,12 +6,29 @@
 // 🚨 BROKEN TYPES BELOW - FIX THEM! 🚨
 
 // This is too loose - it allows invalid combinations
-export interface NetworkResponse {
-  status: "loading" | "success" | "error";
-  data?: UserData; // ❌ Should this always be optional?
-  error?: ErrorInfo; // ❌ Should this always be optional?
-  progress?: number; // ❌ When should this exist?
+// export interface NetworkResponse {
+//   status: "loading" | "success" | "error";
+//   data: UserData; // ❌ Should this always be optional?
+//   error?: ErrorInfo; // ❌ Should this always be optional?
+//   progress?: number; // ❌ When should this exist?
+// }
+
+export interface SuccessResponse {
+  status: "success";
+  data: UserData;
 }
+
+export interface ErrorResponse {
+  status: "error";
+  error: ErrorInfo;
+}
+
+export interface LoadingResponse {
+  status: "loading";
+  progress?: number;
+}
+
+export type NetworkResponse = SuccessResponse | ErrorResponse | LoadingResponse;
 
 export interface UserData {
   id: string;
@@ -26,7 +43,7 @@ export interface ErrorInfo {
   code: string;
   message: string;
   timestamp: string; // ❌ Should this be Date? string?
-  details?: any; // ❌ 'any' is forbidden in this course!
+  details?: string | boolean | number | unknown; // ❌ 'any' is forbidden in this course!
 }
 
 export interface UserPreferences {
@@ -34,6 +51,7 @@ export interface UserPreferences {
   language: string; // ❌ Should this be more specific?
   emailNotifications: boolean;
 }
+
 
 // 💡 HINTS FOR FIXING:
 //

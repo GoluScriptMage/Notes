@@ -60,8 +60,8 @@ cd session-1-logic-gates/
 # Open the challenge
 code challenge.ts
 
-# Run TypeScript compiler to see errors
-npx tsc --noEmit challenge.ts
+# Run TypeScript compiler to see ALL errors
+npx tsc --noEmit
 ```
 
 ---

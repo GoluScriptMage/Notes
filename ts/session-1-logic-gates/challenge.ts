@@ -9,7 +9,12 @@
 // - Must be type-safe at compile time
 // - Must be runtime-safe
 
-import { NetworkResponse, UserData, ErrorInfo } from "./types";
+import {
+  NetworkResponse,
+  UserData,
+  ErrorInfo,
+  type SuccessResponse,
+} from "./types";
 
 // 🚨 BROKEN CODE BELOW - FIX IT! 🚨
 
@@ -27,7 +32,12 @@ function processUserData(response: NetworkResponse): string {
   }
 
   // What happens if response.status is 'loading'?
-  return "Loading...";
+  if (response.status === "loading") {
+    return `Loading... ${response.progress || 0}% complete`;
+  }
+
+  const _exhaustiveCheck: never = response;
+  return _exhaustiveCheck;
 }
 
 // This function has even more subtle bugs
@@ -44,7 +54,9 @@ function handleApiResponse(response: NetworkResponse): void {
       // This looks safe...
       console.log(`User: ${response.data.name}`);
       console.log(`Email: ${response.data.email}`);
-      console.log(`Last login: ${response.data.lastLogin}`);
+      console.log(
+        `Last login: ${new Date(response.data.lastLogin).toLocaleDateString()}`
+      );
       break;
 
     case "error":
@@ -52,8 +64,15 @@ function handleApiResponse(response: NetworkResponse): void {
       // This also looks safe...
       console.error(`Error: ${response.error.message}`);
       console.error(`Code: ${response.error.code}`);
-      console.error(`Timestamp: ${response.error.timestamp}`);
+      console.error(
+        `Timestamp: ${new Date(response.error.timestamp).toLocaleDateString()}`
+      );
       break;
+
+    default: {
+      const _exhaustiveCheck: never = response;
+      return _exhaustiveCheck;
+    }
 
     // What if a new status gets added to NetworkResponse?
     // How would you catch that at compile time?
@@ -61,9 +80,11 @@ function handleApiResponse(response: NetworkResponse): void {
 }
 
 // This utility function has a sneaky bug
-function isDataAvailable(response: NetworkResponse): boolean {
+function isDataAvailable(
+  response: NetworkResponse
+): response is SuccessResponse {
   // This logic seems correct...
-  return response.status === "success" && response.data !== undefined;
+  return response.status === "success";
 }
 
 // This function tries to be smart but fails
